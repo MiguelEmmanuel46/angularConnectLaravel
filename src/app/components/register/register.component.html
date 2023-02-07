@@ -1,0 +1,46 @@
+<div class="container" >
+	<div class="row">
+		<div class="col col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-xxl-2" ></div>
+		<div class="col col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 mt-3" style="text-align: center; background-color: rgba(136,157,163,0.7); box-shadow: 10px 10px 10px 0px black;">
+			<h1>{{page_title}}</h1>
+			<p *ngIf="status != 'success'">csacc cscsac</p>
+
+			<div *ngIf="status == 'success'" class="alert alert-success" >
+				<h2>Registro correcto <a [routerLink]="['/login']">¡Inicia sesion aqui!</a></h2>
+			</div>
+
+			<div *ngIf="status != 'succes'" class="alert alert-danger" >
+				<h2>Registro incorrecto </h2><p>{{erroresv}}</p>
+			</div>
+			
+			<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+				<div class="form-group">
+					<label for="name" class="form-control-label">Nombre completo:
+						<input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="user.name" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="required"> 
+						<small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="email" class="form-control-label">Correo electronico:
+						<input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+						<small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block" >El correo no es valido</small>
+					</label>
+				</div>			
+				<div class="form-group">
+					<label for="password" class="form-control-label">Contraseña:
+						<input type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="user.password" required>
+						<small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="password" class="form-control-label">Confirmacion de contraseña:
+						<input type="password" name="password_confirmation" class="form-control" #password_confirmation="ngModel" [(ngModel)]="user.password_confirmation" required>
+						<small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+					</label>
+				</div>
+				<input type="submit" value="Registrar" class="btn btn-primary" [disabled]="registerForm.invalid">
+			</form>
+		</div>
+		<div class="col col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-xxl-2" ></div>
+	</div>
+</div>
