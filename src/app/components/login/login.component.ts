@@ -1,19 +1,45 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [UserService]
 })
+
 export class LoginComponent implements OnInit{
   public page_title: string;
-  constructor(){
+  public user: User;
+  public status: string;
+
+  constructor(
+    private _userService: UserService
+  ){
     this.page_title ='Identificate';
-   }
+    this.user = new User(0,'','','','');
+    this.status = "";
+  }
 
   ngOnInit(){
 
+  }
+  onSubmit(form:any){
+    this._userService.signup(this.user).subscribe(
+      response => {
+       
+          
+          console.log(response);
+            
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error);
+       
+      }
+    );
   }
 
 }
