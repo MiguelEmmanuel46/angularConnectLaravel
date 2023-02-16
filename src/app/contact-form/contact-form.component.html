@@ -1,0 +1,39 @@
+
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+	<div class="form-group">
+		<label for="name" class="form-control-label">Nombre completo:
+			<input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="contacto.name" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required="required"> 
+			<small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre no es valido</small>
+		</label>
+	</div>
+	<div class="form-group">
+		<label for="email" class="form-control-label">Correo electronico:
+			<input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="contacto.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+			<small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block" >El correo no es valido</small>
+		</label>
+	</div>			
+	<div class="form-group">
+		<label for="telefono" class="form-control-label">Contraseña:
+			<input type="tel" name="telefono" class="form-control" #telefono="ngModel" [(ngModel)]="contacto.telefono" required>
+			<small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+		</label>
+	</div>
+	<div class="form-group">
+		<label for="mensaje" class="form-control-label">Confirmacion de contraseña:
+			<input type="text" name="mensaje" class="form-control" #mensaje="ngModel" [(ngModel)]="contacto.mensaje" required>
+			<small *ngIf="!mensaje.valid && mensaje.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+		</label>
+	</div>
+	<input type="submit" value="Registrar" class="btn btn-primary" [disabled]="registerForm.invalid">
+</form>
+
+<div *ngIf="message == 'error'" class="alert alert-danger" >
+				
+				<p>{{message}}</p>
+			</div>
+
+
+
+			<div *ngIf="message != 'error'" class="alert alert-success" >
+				<p>{{message}}</p>
+			</div>

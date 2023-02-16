@@ -31,4 +31,10 @@ export class AppComponent implements OnInit, DoCheck{
     this.token = this._userService.getToken();
   }
 
+
+    onSubmit(){
+    
+  }
+
+
 }

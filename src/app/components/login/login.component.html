@@ -17,10 +17,11 @@
 					<small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
 				</label>
 			</div>
-			<input type="submit" value="Identificarse" class="btn btn-primary" [disabled]="loginForm.invalid">
+			<input type="submit" value="Identificarse" class="" [disabled]="loginForm.invalid">
 		</form>
 		  <div id="mensajes"></div>
 		    <!-- Remind Passowrd -->
+		    <h3 *ngIf="messageError != ''">{{messageError}}</h3>
 		<div id="formFooter">
 		</div>
 	</div>

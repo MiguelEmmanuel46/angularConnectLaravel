@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
   public status: string;
   public token: any;
   public identity: any;
+  public messageError: string;
 
   constructor(
     private _userService: UserService,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit{
     this.page_title ='Identificate';
     this.user = new User(0,'','','','');
     this.status = "";
+    this.messageError="";
   }
 
   ngOnInit(){
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit{
                     // crear sesion datos de usuario identificado                   
                     localStorage.setItem('token', this.token);
                     localStorage.setItem('identity', JSON.stringify(this.identity));
+                    this._router.navigate(['inicio']);
                 },
                 error => {
                   this.status = 'error';
@@ -61,6 +64,9 @@ export class LoginComponent implements OnInit{
           }else{
              this.status = 'error';
              console.log("status response: ");
+             console.log(response);
+             this.messageError = response.message;
+        //console.log(error.message);
           }
           //console.log(response);
         },

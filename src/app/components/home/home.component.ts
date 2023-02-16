@@ -15,4 +15,19 @@ export class HomeComponent  implements OnInit{
   ngOnInit(){
     console.log("registro lanzado componenete");
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
