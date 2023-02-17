@@ -13,27 +13,27 @@
 		</label>
 	</div>			
 	<div class="form-group">
-		<label for="telefono" class="form-control-label">Contraseña:
+		<label for="telefono" class="form-control-label">telefono:
 			<input type="tel" name="telefono" class="form-control" #telefono="ngModel" [(ngModel)]="contacto.telefono" required>
-			<small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+			<small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">Formato de telefono invalido</small>
 		</label>
 	</div>
 	<div class="form-group">
 		<label for="mensaje" class="form-control-label">Confirmacion de contraseña:
-			<input type="text" name="mensaje" class="form-control" #mensaje="ngModel" [(ngModel)]="contacto.mensaje" required>
-			<small *ngIf="!mensaje.valid && mensaje.touched" class="invalid-feedback d-block">La contraseña no es valida</small>
+			<textarea name="mensaje" class="form-control" #mensaje="ngModel" [(ngModel)]="contacto.mensaje" ></textarea>
+			<small *ngIf="!mensaje.valid && mensaje.touched" class="invalid-feedback d-block">Rellena este campo</small>
 		</label>
 	</div>
 	<input type="submit" value="Registrar" class="btn btn-primary" [disabled]="registerForm.invalid">
 </form>
 
-<div *ngIf="message == 'error'" class="alert alert-danger" >
-				
-				<p>{{message}}</p>
-			</div>
+<div class="container" style="background-color: purple;">
+<div *ngIf="status === 'error'" class="alert alert-danger" style="background-color: red;" >
+	<h3>{{status}}</h3>
+</div>
+<div *ngIf="status === 'success'" class="alert alert-success" style="background-color: green;">
+	<h4>{{mensaje2}}</h4>
+</div>
 
-
-
-			<div *ngIf="message != 'error'" class="alert alert-success" >
-				<p>{{message}}</p>
-			</div>
+			
+</div>

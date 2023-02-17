@@ -9,11 +9,16 @@ import { ContactoService } from '../services/contacto.service';
 })
 export class ContactFormComponent {
   public contacto: Contacto;
-  public message: string;
+  public status: string;
+  public mensaje: string;
+  public mensaje2: string;
+
 
   constructor(private _contactoService: ContactoService){
     this.contacto = new Contacto('','','','');
-    this.message = "";
+    this.status = "";
+    this.mensaje ="";
+    this.mensaje2 ="";
   }
 
 
@@ -21,18 +26,24 @@ export class ContactFormComponent {
 onSubmit(form:any){
   this._contactoService.register(this.contacto).subscribe(
     response => {
-      if(response.message){
-        this.message = response.message;
+
+      if(response.status === 'success'){
+        this.status = response.status;
+        this.mensaje = response.message;
+        this.mensaje2 = this.mensaje.toString();
+        
         form.reset();
-        console.log(response.message);
+        
       }else{
-          this.message = 'error';
+        this.status = 'error';
+          
       }        
     },
     error => {
-      this.message = 'error';
-      
+      this.status = 'error';
     }
+
+
   );
 }
 
